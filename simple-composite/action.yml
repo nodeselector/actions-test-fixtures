@@ -1,0 +1,15 @@
+name: 'Simple Composite Action'
+description: 'A composite action that references other actions (has transitive deps)'
+inputs:
+  name:
+    description: 'Name to greet'
+    default: 'world'
+runs:
+  using: 'composite'
+  steps:
+    - uses: nodeselector/actions-test-fixtures/simple-node@main
+      with:
+        name: ${{ inputs.name }}
+    - uses: actions/checkout@v4
+    - run: echo "Composite action done"
+      shell: bash
