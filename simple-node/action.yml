@@ -1,0 +1,9 @@
+name: 'Simple Node Action'
+description: 'A minimal node action for testing (no transitive deps)'
+inputs:
+  name:
+    description: 'Name to greet'
+    default: 'world'
+runs:
+  using: 'node20'
+  main: 'index.js'
