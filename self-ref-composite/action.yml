@@ -1,0 +1,8 @@
+name: 'Self-Ref Composite Action'
+description: 'A composite action that uses $/path to reference a sibling action in the same repo'
+runs:
+  using: 'composite'
+  steps:
+    - uses: $/simple-node
+    - run: echo "Self-ref composite done"
+      shell: bash
