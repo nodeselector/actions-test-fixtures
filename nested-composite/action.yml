@@ -1,0 +1,8 @@
+name: 'Nested Composite Action'
+description: 'A composite action that uses another composite (tests recursion depth 2)'
+runs:
+  using: 'composite'
+  steps:
+    - uses: nodeselector/actions-test-fixtures/simple-composite@main
+    - run: echo "Nested composite done"
+      shell: bash
