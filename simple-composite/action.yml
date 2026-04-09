@@ -10,6 +10,6 @@ runs:
     - uses: nodeselector/actions-test-fixtures/simple-node@main
       with:
         name: ${{ inputs.name }}
-    - uses: actions/checkout@v4
+    - uses: nodeselector/actions-test-fixtures/simple-echo@main
     - run: echo "Composite action done"
       shell: bash
