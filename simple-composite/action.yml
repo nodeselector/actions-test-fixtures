@@ -10,8 +10,6 @@ runs:
     - uses: nodeselector/actions-test-fixtures/simple-node@main
       with:
         name: ${{ inputs.name }}
-    - uses: actions/hello-world-javascript-action@main
-      with:
-        who-to-greet: testing
+    - uses: nodeselector/actions-test-fixtures-b/simple-echo@main
     - run: echo "Composite action done"
       shell: bash
