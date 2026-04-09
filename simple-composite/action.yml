@@ -1,5 +1,5 @@
 name: 'Simple Composite Action'
-description: 'A composite action that references other actions (has transitive deps)'
+description: 'Composite with transitive cross-repo dependency'
 inputs:
   name:
     description: 'Name to greet'
@@ -10,6 +10,8 @@ runs:
     - uses: nodeselector/actions-test-fixtures/simple-node@main
       with:
         name: ${{ inputs.name }}
-    - uses: nodeselector/actions-test-fixtures/simple-echo@main
+    - uses: actions/hello-world-javascript-action@main
+      with:
+        who-to-greet: testing
     - run: echo "Composite action done"
       shell: bash
