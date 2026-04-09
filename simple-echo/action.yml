@@ -1,0 +1,11 @@
+name: Simple Echo Action
+description: A minimal composite action that just echoes
+inputs:
+  message:
+    description: Message to echo
+    default: hello from simple-echo
+runs:
+  using: composite
+  steps:
+    - run: echo "${{ inputs.message }}"
+      shell: bash
