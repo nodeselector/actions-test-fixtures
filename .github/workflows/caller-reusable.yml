@@ -1,0 +1,23 @@
+name: caller-reusable
+on:
+  workflow_dispatch:
+jobs:
+  # Calls a local reusable workflow — should be skipped by pin (not an action)
+  call-local:
+    uses: ./.github/workflows/reusable-build.yml
+    with:
+      node-version: '20'
+
+  # Calls a remote reusable workflow — should also be skipped by pin
+  call-remote:
+    uses: nodeselector/actions-test-fixtures/.github/workflows/reusable-build.yml@main
+    with:
+      node-version: '20'
+
+  # Regular job with pinnable actions alongside the reusable calls
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: echo "lint step"
