@@ -1,0 +1,12 @@
+name: multi-action
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - uses: actions/cache/save@v4
+      - uses: actions/cache/restore@v4
+      - run: echo "multi-action workflow"

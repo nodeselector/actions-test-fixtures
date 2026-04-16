@@ -1,0 +1,10 @@
+name: composite-transitive
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nodeselector/actions-test-fixtures/simple-composite@main
+      - run: echo "composite transitive test"

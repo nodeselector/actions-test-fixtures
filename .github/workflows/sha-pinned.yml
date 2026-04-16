@@ -1,0 +1,10 @@
+name: sha-pinned
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # This ref IS the real commit SHA — should pin cleanly (ref == resolved OID)
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - run: echo "sha-pinned workflow"
