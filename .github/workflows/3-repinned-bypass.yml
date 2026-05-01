@@ -1,0 +1,24 @@
+name: "Scenario 3: Re-pinned after attack (full bypass)"
+
+# Simulates: you saw the ref_moved warning from scenario 2, assumed it
+# was a routine update, and re-pinned. The lockfile now records the
+# attacker's SHA (38b3412) as the known-good baseline.
+#
+# Expected: gh actions-pin check → valid (false negative, attacker wins)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nodeselector/actions-test-fixtures/nested-composite@bypassed
+
+
+
+# Automatically generated and managed by: `gh actions pin <workflow-path>`
+dependencies:
+  - github.com/actions/checkout@v4:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
+  - github.com/nodeselector/actions-test-fixtures/nested-composite@bypassed:sha1-38b3412adcb7afb4a061c519513e45cbaf4a1cec

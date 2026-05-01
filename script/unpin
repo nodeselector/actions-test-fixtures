@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Strips the dependencies (lockfile) section from all scenario workflows.
+# Use this to reset to an "unpinned" state before demoing `gh actions-pin`.
+#
+# Usage: script/unpin [file...]
+#   No args = all workflows in .github/workflows/
+#   With args = only the specified files
+
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+files=("$@")
+if [[ ${#files[@]} -eq 0 ]]; then
+  files=(.github/workflows/*.yml)
+fi
+
+for f in "${files[@]}"; do
+  if [[ ! -f "$f" ]]; then
+    echo "skip: $f (not found)" >&2
+    continue
+  fi
+
+  # Strip everything from the dependencies comment/section onward
+  if grep -q '^# Automatically generated' "$f" 2>/dev/null; then
+    # Remove the auto-generated comment and everything after it
+    sed -i '' '/^# Automatically generated/,$d' "$f"
+    echo "unpinned: $f"
+  elif grep -q '^dependencies:' "$f" 2>/dev/null; then
+    sed -i '' '/^dependencies:/,$d' "$f"
+    echo "unpinned: $f"
+  else
+    echo "skip: $f (no dependencies section)"
+  fi
+done

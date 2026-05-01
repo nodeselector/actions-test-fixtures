@@ -1,0 +1,25 @@
+name: "Scenario 2: Tag moved backward (lineage broken)"
+
+# Pinned at the real HEAD (ea53476) before the attacker moved @bypassed
+# backward to its parent commit (38b3412).
+#
+# Expected: gh actions-pin check → ref_moved + imposter_commit
+# The pinned SHA is a descendant of the tag's new position, so the
+# reachability check correctly flags it as unreachable.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nodeselector/actions-test-fixtures/nested-composite@bypassed
+
+
+
+# Automatically generated and managed by: `gh actions pin <workflow-path>`
+dependencies:
+  - github.com/actions/checkout@v4:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
+  - github.com/nodeselector/actions-test-fixtures/nested-composite@bypassed:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d
