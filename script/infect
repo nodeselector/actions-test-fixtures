@@ -6,22 +6,54 @@
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 
-PRE_ATTACK_SHA="ea53476fdc172d8552df5af9658a45a367e4f41d"
+# The fork-network commit that the @tampered tag points at.
+# This is the attacker's commit — NOT reachable from any branch.
+FORK_COMMIT_SHA="7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a"
+
+# The legit SHA that nested-composite was pinned to before the attack.
+# This is what @updated (the safe tag) resolves to.
+LEGIT_SHA="ea53476fdc172d8552df5af9658a45a367e4f41d"
 
 echo "① Stripping existing dependencies…"
 script/unpin
 
 echo ""
-echo "② Pinning all workflows…"
-gh actions-pin .github/workflows/*.yml
+echo "② Pinning safe workflows…"
+gh actions-pin .github/workflows/happy-path.yml .github/workflows/reusable-build.yml
 
 echo ""
-echo "③ Poisoning imposter-commit workflow…"
+echo "③ Seeding imposter-commit.yml lockfile with fork commit…"
 
-current_sha=$(grep "nested-composite@tampered:sha1-" .github/workflows/imposter-commit.yml | head -1 | sed "s/.*sha1-//" | tr -d '[:space:]')
-if [ -z "$current_sha" ]; then
-  echo "   SKIP: no pinned entry for @tampered" >&2
+# We can't use `gh actions-pin` for this workflow — pin-time detection
+# would (correctly) block the fork commit. Instead we manually write a
+# lockfile that contains the fork SHA, simulating an attacker who
+# managed to slip it in before detection existed.
+
+# Grab the checkout SHA from happy-path (already pinned).
+checkout_sha=$(grep "actions/checkout@v4.3.1:sha1-" .github/workflows/happy-path.yml | head -1 | sed "s/.*sha1-//" | tr -d '[:space:]')
+if [ -z "$checkout_sha" ]; then
+  echo "   SKIP: couldn't find checkout SHA in happy-path.yml" >&2
   exit 1
 fi
-sed -i '' "s|nested-composite@tampered:sha1-${current_sha}|nested-composite@tampered:sha1-${PRE_ATTACK_SHA}|" .github/workflows/imposter-commit.yml
-echo "   infected: imposter-commit.yml — ${current_sha:0:12} → ${PRE_ATTACK_SHA:0:12}"
+
+# Grab transitive dep SHAs from happy-path (same composites).
+simple_composite_sha=$(grep "simple-composite@main:sha1-" .github/workflows/happy-path.yml | head -1 | sed "s/.*sha1-//" | tr -d '[:space:]')
+simple_node_sha=$(grep "simple-node@main:sha1-" .github/workflows/happy-path.yml | head -1 | sed "s/.*sha1-//" | tr -d '[:space:]')
+simple_echo_sha=$(grep "simple-echo@main:sha1-" .github/workflows/happy-path.yml | head -1 | sed "s/.*sha1-//" | tr -d '[:space:]')
+
+# Append the poisoned lockfile.
+cat >> .github/workflows/imposter-commit.yml << EOF
+
+# Automatically generated and managed by gh-actions-pin
+dependencies:
+  - github.com/actions/checkout@v4.3.1:sha1-${checkout_sha}
+  - github.com/nodeselector/actions-test-fixtures/nested-composite@tampered:sha1-${FORK_COMMIT_SHA}
+
+  # Transitive dependencies (via nodeselector/actions-test-fixtures/nested-composite@tampered)
+  - github.com/nodeselector/actions-test-fixtures/simple-composite@main:sha1-${simple_composite_sha}
+
+  # Transitive dependencies (via nodeselector/actions-test-fixtures/simple-composite@main)
+  - github.com/nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-${simple_echo_sha}
+  - github.com/nodeselector/actions-test-fixtures/simple-node@main:sha1-${simple_node_sha}
+EOF
+echo "   infected: imposter-commit.yml with fork SHA ${FORK_COMMIT_SHA:0:12}"
