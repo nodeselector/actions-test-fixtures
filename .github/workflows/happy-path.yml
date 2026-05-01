@@ -20,8 +20,8 @@ dependencies:
   - github.com/nodeselector/actions-test-fixtures/nested-composite@updated:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d
 
   # Transitive dependencies (via nodeselector/actions-test-fixtures/nested-composite@updated)
-  - github.com/nodeselector/actions-test-fixtures/simple-composite@main:sha1-99a4a0f9cca64905abe136fea3fbcf45ca8858f4
+  - github.com/nodeselector/actions-test-fixtures/simple-composite@main:sha1-473241d853d45770e8c124b6941d4d0a959b20ec
 
   # Transitive dependencies (via nodeselector/actions-test-fixtures/simple-composite@main)
   - github.com/nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637
-  - github.com/nodeselector/actions-test-fixtures/simple-node@main:sha1-99a4a0f9cca64905abe136fea3fbcf45ca8858f4
+  - github.com/nodeselector/actions-test-fixtures/simple-node@main:sha1-473241d853d45770e8c124b6941d4d0a959b20ec

@@ -25,6 +25,3 @@ if [ -z "$current_sha" ]; then
 fi
 sed -i '' "s|nested-composite@tampered:sha1-${current_sha}|nested-composite@tampered:sha1-${PRE_ATTACK_SHA}|" .github/workflows/imposter-commit.yml
 echo "   infected: imposter-commit.yml — ${current_sha:0:12} → ${PRE_ATTACK_SHA:0:12}"
-
-echo ""
-echo "Done. Run: gh actions-pin check .github/workflows/*.yml"
