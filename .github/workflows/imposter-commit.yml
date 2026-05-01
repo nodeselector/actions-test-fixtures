@@ -11,3 +11,15 @@ jobs:
       - uses: nodeselector/actions-test-fixtures/nested-composite@tampered
 
 
+
+# Automatically generated and managed by gh-actions-pin
+dependencies:
+  - github.com/actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
+  - github.com/nodeselector/actions-test-fixtures/nested-composite@tampered:sha1-7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a
+
+  # Transitive dependencies (via nodeselector/actions-test-fixtures/nested-composite@tampered)
+  - github.com/nodeselector/actions-test-fixtures/simple-composite@main:sha1-85a3febaf591406fb9d7016f930a27c5194f6260
+
+  # Transitive dependencies (via nodeselector/actions-test-fixtures/simple-composite@main)
+  - github.com/nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637
+  - github.com/nodeselector/actions-test-fixtures/simple-node@main:sha1-85a3febaf591406fb9d7016f930a27c5194f6260
