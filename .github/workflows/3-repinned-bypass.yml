@@ -13,12 +13,17 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.3.1
       - uses: nodeselector/actions-test-fixtures/nested-composite@bypassed
 
-
-
-# Automatically generated and managed by: `gh actions pin <workflow-path>`
+# Automatically generated and managed by gh-actions-pin
 dependencies:
-  - github.com/actions/checkout@v4:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
+  - github.com/actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
   - github.com/nodeselector/actions-test-fixtures/nested-composite@bypassed:sha1-38b3412adcb7afb4a061c519513e45cbaf4a1cec
+
+  # Transitive dependencies (via nodeselector/actions-test-fixtures/nested-composite@bypassed)
+  - github.com/nodeselector/actions-test-fixtures/simple-composite@main:sha1-2e757ba9851c22ba689f2b30bce91a36184fe4ee
+
+  # Transitive dependencies (via nodeselector/actions-test-fixtures/simple-composite@main)
+  - github.com/nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637
+  - github.com/nodeselector/actions-test-fixtures/simple-node@main:sha1-2e757ba9851c22ba689f2b30bce91a36184fe4ee
