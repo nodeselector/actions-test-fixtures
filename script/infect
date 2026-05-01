@@ -1,37 +1,40 @@
 #!/usr/bin/env bash
-# Infects scenarios 1-4 with pre-attack pinned SHAs.
+# Sets up the tamper demo: unpin → pin correctly → poison scenarios 1 & 2.
 #
-# Flow: script/unpin → gh actions-pin .github/workflows/*.yml → script/infect
+# Usage: script/infect
 #
-# The pin step writes correct lockfile entries (including transitives).
-# This script then rewrites ONLY the top-level action SHA for scenarios 1 & 2
-# to simulate "pinned before the attack happened."
-#
-# Scenario 1 (@tampered): tag moved to fork commit — swap SHA to pre-attack ea53476
-# Scenario 2 (@bypassed): tag moved backward   — swap SHA to pre-attack ea53476
-# Scenario 3 (@bypassed): re-pinned after attack — already correct (current SHA)
-# Scenario 4 (@tampered): first pin after attack — already correct (current SHA)
+# Scenario 1 (@tampered): swap SHA to pre-attack ea53476
+# Scenario 2 (@bypassed): swap SHA to pre-attack ea53476
+# Scenarios 3-5: already correct after pinning (no changes needed)
 
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 
 PRE_ATTACK_SHA="ea53476fdc172d8552df5af9658a45a367e4f41d"
 
+echo "① Stripping existing dependencies…"
+script/unpin
+
+echo ""
+echo "② Pinning all workflows…"
+gh actions-pin .github/workflows/*.yml
+
+echo ""
+echo "③ Poisoning scenarios 1 & 2…"
+
 poison() {
   local file="$1" tag="$2" current_sha
-  # Extract the current pinned SHA for this tag from the deps section
-  current_sha=$(grep "nested-composite@${tag}:sha1-" "$file" | sed "s/.*sha1-//" | tr -d '[:space:]')
+  current_sha=$(grep "nested-composite@${tag}:sha1-" "$file" | head -1 | sed "s/.*sha1-//" | tr -d '[:space:]')
   if [ -z "$current_sha" ]; then
-    echo "SKIP: $(basename "$file") — no pinned entry for @${tag} (run gh actions-pin first)" >&2
+    echo "   SKIP: $(basename "$file") — no entry for @${tag}" >&2
     return 1
   fi
   sed -i '' "s|nested-composite@${tag}:sha1-${current_sha}|nested-composite@${tag}:sha1-${PRE_ATTACK_SHA}|" "$file"
-  echo "infected: $(basename "$file") — @${tag} SHA ${current_sha:0:12} → ${PRE_ATTACK_SHA:0:12}"
+  echo "   infected: $(basename "$file") — ${current_sha:0:12} → ${PRE_ATTACK_SHA:0:12}"
 }
 
 poison .github/workflows/1-pinned-before-hijack.yml tampered
 poison .github/workflows/2-tag-moved-backward.yml   bypassed
 
 echo ""
-echo "Scenarios 3 & 4 already pinned at attack SHAs — no changes needed."
-echo "Run: gh actions-pin check .github/workflows/*.yml"
+echo "Done. Run: gh actions-pin check .github/workflows/*.yml"
