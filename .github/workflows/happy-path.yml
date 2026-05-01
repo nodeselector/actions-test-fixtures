@@ -1,20 +1,18 @@
-name: "Scenario 5: Legitimate update (tag moved forward)"
-
-# Pinned at 38b3412 before the maintainer bumped @updated to ea53476
-# (a descendant). This is the normal case — not an attack.
-#
-# Expected: gh actions-pin check → ref_moved (reachability passes)
-# Review the diff, then `gh actions-pin upgrade` to accept.
+name: Happy path
 
 on:
   workflow_dispatch:
 
 jobs:
-  build:
+  lint:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4.3.1
       - uses: nodeselector/actions-test-fixtures/nested-composite@updated
+      - run: echo "lint done"
+
+  build:
+    uses: nodeselector/actions-test-fixtures/.github/workflows/reusable-build.yml@main
 
 # Automatically generated and managed by gh-actions-pin
 dependencies:
@@ -22,8 +20,8 @@ dependencies:
   - github.com/nodeselector/actions-test-fixtures/nested-composite@updated:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d
 
   # Transitive dependencies (via nodeselector/actions-test-fixtures/nested-composite@updated)
-  - github.com/nodeselector/actions-test-fixtures/simple-composite@main:sha1-2e757ba9851c22ba689f2b30bce91a36184fe4ee
+  - github.com/nodeselector/actions-test-fixtures/simple-composite@main:sha1-99a4a0f9cca64905abe136fea3fbcf45ca8858f4
 
   # Transitive dependencies (via nodeselector/actions-test-fixtures/simple-composite@main)
   - github.com/nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637
-  - github.com/nodeselector/actions-test-fixtures/simple-node@main:sha1-2e757ba9851c22ba689f2b30bce91a36184fe4ee
+  - github.com/nodeselector/actions-test-fixtures/simple-node@main:sha1-99a4a0f9cca64905abe136fea3fbcf45ca8858f4

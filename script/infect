@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
-# Sets up the tamper demo: unpin → pin correctly → poison scenarios 1 & 2.
+# Sets up the demo: unpin → pin → poison the imposter-commit workflow.
 #
 # Usage: script/infect
-#
-# Scenario 1 (@tampered): swap SHA to pre-attack ea53476
-# Scenario 2 (@bypassed): swap SHA to pre-attack ea53476
-# Scenarios 3-5: already correct after pinning (no changes needed)
 
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
@@ -20,21 +16,15 @@ echo "② Pinning all workflows…"
 gh actions-pin .github/workflows/*.yml
 
 echo ""
-echo "③ Poisoning scenarios 1 & 2…"
+echo "③ Poisoning imposter-commit workflow…"
 
-poison() {
-  local file="$1" tag="$2" current_sha
-  current_sha=$(grep "nested-composite@${tag}:sha1-" "$file" | head -1 | sed "s/.*sha1-//" | tr -d '[:space:]')
-  if [ -z "$current_sha" ]; then
-    echo "   SKIP: $(basename "$file") — no entry for @${tag}" >&2
-    return 1
-  fi
-  sed -i '' "s|nested-composite@${tag}:sha1-${current_sha}|nested-composite@${tag}:sha1-${PRE_ATTACK_SHA}|" "$file"
-  echo "   infected: $(basename "$file") — ${current_sha:0:12} → ${PRE_ATTACK_SHA:0:12}"
-}
-
-poison .github/workflows/1-pinned-before-hijack.yml tampered
-poison .github/workflows/2-tag-moved-backward.yml   bypassed
+current_sha=$(grep "nested-composite@tampered:sha1-" .github/workflows/imposter-commit.yml | head -1 | sed "s/.*sha1-//" | tr -d '[:space:]')
+if [ -z "$current_sha" ]; then
+  echo "   SKIP: no pinned entry for @tampered" >&2
+  exit 1
+fi
+sed -i '' "s|nested-composite@tampered:sha1-${current_sha}|nested-composite@tampered:sha1-${PRE_ATTACK_SHA}|" .github/workflows/imposter-commit.yml
+echo "   infected: imposter-commit.yml — ${current_sha:0:12} → ${PRE_ATTACK_SHA:0:12}"
 
 echo ""
 echo "Done. Run: gh actions-pin check .github/workflows/*.yml"

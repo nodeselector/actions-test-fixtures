@@ -1,10 +1,4 @@
-name: "Scenario 1: Fork injection (lineage preserved)"
-
-# Pinned at the real HEAD (ea53476) before the attacker moved @tampered
-# to a fork-network commit (7b403c9 from choam-io/actions-test-fixtures-fork).
-#
-# Expected: gh actions-pin check → ref_moved (reachability passes)
-# See: https://github.com/choam-io/actions-test-fixtures-fork/commit/7b403c9
+name: Imposter commit
 
 on:
   workflow_dispatch:
@@ -22,8 +16,8 @@ dependencies:
   - github.com/nodeselector/actions-test-fixtures/nested-composite@tampered:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d
 
   # Transitive dependencies (via nodeselector/actions-test-fixtures/nested-composite@tampered)
-  - github.com/nodeselector/actions-test-fixtures/simple-composite@main:sha1-2e757ba9851c22ba689f2b30bce91a36184fe4ee
+  - github.com/nodeselector/actions-test-fixtures/simple-composite@main:sha1-99a4a0f9cca64905abe136fea3fbcf45ca8858f4
 
   # Transitive dependencies (via nodeselector/actions-test-fixtures/simple-composite@main)
   - github.com/nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637
-  - github.com/nodeselector/actions-test-fixtures/simple-node@main:sha1-2e757ba9851c22ba689f2b30bce91a36184fe4ee
+  - github.com/nodeselector/actions-test-fixtures/simple-node@main:sha1-99a4a0f9cca64905abe136fea3fbcf45ca8858f4

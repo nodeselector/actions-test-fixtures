@@ -1,0 +1,17 @@
+name: Reusable build
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4.3.1
+      - uses: nodeselector/actions-test-fixtures/simple-node@main
+      - run: echo "reusable build done"
+
+# Automatically generated and managed by gh-actions-pin
+dependencies:
+  - github.com/actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
+  - github.com/nodeselector/actions-test-fixtures/simple-node@main:sha1-99a4a0f9cca64905abe136fea3fbcf45ca8858f4
