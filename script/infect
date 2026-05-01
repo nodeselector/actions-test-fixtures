@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Writes the tamper scenario lockfile entries (1-4) into their workflows.
+# Run this AFTER `script/unpin` + `gh actions-pin` to layer in the
+# pre-attack pinned SHAs that make the tamper demos work.
+#
+# Usage: script/infect
+#
+# Scenario 1: Pins the REAL SHA (ea53476) — then tampered tag moves to fork commit
+# Scenario 2: Pins the REAL SHA (ea53476) — then bypassed tag moves backward
+# Scenario 3: Pins the ATTACKER's SHA (38b3412) — simulates re-pin after attack
+# Scenario 4: Pins the ATTACKER's SHA (7b403c9) — simulates first pin after attack
+
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+CHECKOUT_PIN="github.com/actions/checkout@v4:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5"
+DEPS_HEADER='# Automatically generated and managed by: `gh actions pin <workflow-path>`'
+
+inject() {
+  local file="$1" pin="$2"
+
+  # Strip existing deps section if present
+  if grep -q '^# Automatically generated' "$file" 2>/dev/null; then
+    sed -i '' '/^# Automatically generated/,$d' "$file"
+  elif grep -q '^dependencies:' "$file" 2>/dev/null; then
+    sed -i '' '/^dependencies:/,$d' "$file"
+  fi
+
+  cat >> "$file" <<EOF
+
+${DEPS_HEADER}
+dependencies:
+  - ${CHECKOUT_PIN}
+  - ${pin}
+EOF
+  echo "infected: $(basename "$file")"
+}
+
+inject .github/workflows/1-pinned-before-hijack.yml \
+  "github.com/nodeselector/actions-test-fixtures/nested-composite@tampered:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d"
+
+inject .github/workflows/2-tag-moved-backward.yml \
+  "github.com/nodeselector/actions-test-fixtures/nested-composite@bypassed:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d"
+
+inject .github/workflows/3-repinned-bypass.yml \
+  "github.com/nodeselector/actions-test-fixtures/nested-composite@bypassed:sha1-38b3412adcb7afb4a061c519513e45cbaf4a1cec"
+
+inject .github/workflows/4-never-pinned.yml \
+  "github.com/nodeselector/actions-test-fixtures/nested-composite@tampered:sha1-7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a"
