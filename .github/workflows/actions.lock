@@ -4,33 +4,30 @@
 version: v0.0.1
 actions:
     actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5:
-        ref: v4.3.1
+        tag: v4.3.1
+        branch: releases/v4
         commit: sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
         owner_id: 44036562
         repo_id: 197814629
     nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637:
-        ref: main
+        branch: main
         commit: sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637
         owner_id: 29457092
         repo_id: 1205442499
-    nodeselector/actions-test-fixtures/nested-composite@tampered:sha1-7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a:
-        ref: tampered
-        commit: sha1-7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a
-        owner_id: 29457092
-        repo_id: 1203329948
     nodeselector/actions-test-fixtures/nested-composite@updated:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d:
-        ref: updated
+        tag: updated
+        branch: main
         commit: sha1-ea53476fdc172d8552df5af9658a45a367e4f41d
         owner_id: 29457092
         repo_id: 1203329948
-    nodeselector/actions-test-fixtures/simple-composite@main:sha1-33a384c001ed694ba938667a1d5ace65d6c49de3:
-        ref: main
-        commit: sha1-33a384c001ed694ba938667a1d5ace65d6c49de3
+    nodeselector/actions-test-fixtures/simple-composite@main:sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8:
+        branch: main
+        commit: sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8
         owner_id: 29457092
         repo_id: 1203329948
-    nodeselector/actions-test-fixtures/simple-node@main:sha1-33a384c001ed694ba938667a1d5ace65d6c49de3:
-        ref: main
-        commit: sha1-33a384c001ed694ba938667a1d5ace65d6c49de3
+    nodeselector/actions-test-fixtures/simple-node@main:sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8:
+        branch: main
+        commit: sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8
         owner_id: 29457092
         repo_id: 1203329948
 workflows:
@@ -39,16 +36,9 @@ workflows:
             - actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
             - nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637
             - nodeselector/actions-test-fixtures/nested-composite@updated:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d
-            - nodeselector/actions-test-fixtures/simple-composite@main:sha1-33a384c001ed694ba938667a1d5ace65d6c49de3
-            - nodeselector/actions-test-fixtures/simple-node@main:sha1-33a384c001ed694ba938667a1d5ace65d6c49de3
-    .github/workflows/imposter-commit.yml:
-        dependencies:
-            - actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
-            - nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637
-            - nodeselector/actions-test-fixtures/nested-composite@tampered:sha1-7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a
-            - nodeselector/actions-test-fixtures/simple-composite@main:sha1-33a384c001ed694ba938667a1d5ace65d6c49de3
-            - nodeselector/actions-test-fixtures/simple-node@main:sha1-33a384c001ed694ba938667a1d5ace65d6c49de3
+            - nodeselector/actions-test-fixtures/simple-composite@main:sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8
+            - nodeselector/actions-test-fixtures/simple-node@main:sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8
     .github/workflows/reusable-build.yml:
         dependencies:
             - actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
-            - nodeselector/actions-test-fixtures/simple-node@main:sha1-33a384c001ed694ba938667a1d5ace65d6c49de3
+            - nodeselector/actions-test-fixtures/simple-node@main:sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8
