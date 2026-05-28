@@ -3,10 +3,10 @@
 # Docs: https://gh.io/actions-lockfile
 version: v0.0.1
 actions:
-    actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17:
-        tag: v4.3.1
-        branch: releases/v4
-        commit: sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+    actions/checkout@v5.0.0:sha1-ff755890cf45f97dcc30aea6a14a7ba5ea6ccd2f:
+        tag: v5.0.0
+        branch: releases/v5
+        commit: sha1-ff755890cf45f97dcc30aea6a14a7ba5ea6ccd2f
         owner_id: 6558852
         repo_id: 610457791
     actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52:
