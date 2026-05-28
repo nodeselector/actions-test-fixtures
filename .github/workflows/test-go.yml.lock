@@ -9,10 +9,10 @@ actions:
         commit: sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
         owner_id: 6558852
         repo_id: 537491527
-    actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17:
+    actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:
         tag: v4.3.1
         branch: releases/v4
-        commit: sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+        commit: sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         owner_id: 6558852
         repo_id: 610457791
     actions/setup-go@v5.1.0:sha1-76821fdd41f9cc0750ac97b0c21ef391732bfe45:

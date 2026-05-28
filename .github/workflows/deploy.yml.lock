@@ -3,10 +3,10 @@
 # Docs: https://gh.io/actions-lockfile
 version: v0.0.1
 actions:
-    actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17:
+    actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:
         tag: v4.3.1
         branch: releases/v4
-        commit: sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+        commit: sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         owner_id: 6558852
         repo_id: 610457791
     docker/build-push-action@v6.9.0:sha1-9586437f25ae0dacbd3ae602b4a2a388d0d00866:
