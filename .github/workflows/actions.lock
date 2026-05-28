@@ -33,10 +33,10 @@ actions:
         commit: sha1-76821fdd41f9cc0750ac97b0c21ef391732bfe45
         owner_id: 6558852
         repo_id: 768652613
-    actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52:
-        tag: v4.1.0
-        branch: releases/v4
-        commit: sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
+    actions/setup-node@v5.0.0:sha1-5e984a73795703af9d320eb9c7f5da555f330498:
+        tag: v5.0.0
+        branch: releases/v5
+        commit: sha1-5e984a73795703af9d320eb9c7f5da555f330498
         owner_id: 6558852
         repo_id: 371874654
     actions/setup-python@v5.2.0:sha1-93c219f026825c2ddcdb9d3165584145f7b4b2c3:
@@ -80,7 +80,7 @@ workflows:
         dependencies:
             - actions/cache@v4.1.2:sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
             - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
-            - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
+            - actions/setup-node@v5.0.0:sha1-5e984a73795703af9d320eb9c7f5da555f330498
     .github/workflows/deploy.yml:
         dependencies:
             - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
@@ -89,12 +89,12 @@ workflows:
     .github/workflows/lint.yml:
         dependencies:
             - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
-            - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
+            - actions/setup-node@v5.0.0:sha1-5e984a73795703af9d320eb9c7f5da555f330498
     .github/workflows/nightly.yml:
         dependencies:
             - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
             - actions/download-artifact@v4.1.8:sha1-f90e50f09b67f6f3165a09937dd24035c12ac61d
-            - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
+            - actions/setup-node@v5.0.0:sha1-5e984a73795703af9d320eb9c7f5da555f330498
     .github/workflows/release.yml:
         dependencies:
             - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
