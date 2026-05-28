@@ -86,6 +86,11 @@ workflows:
             - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
             - docker/build-push-action@v6.9.0:sha1-9586437f25ae0dacbd3ae602b4a2a388d0d00866
             - docker/login-action@v3.3.0:sha1-330c78c7a8c914323948dd43a70d9987a5384f10
+    .github/workflows/e2e.yml:
+        dependencies:
+            - actions/cache@v4.1.2:sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
+            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
     .github/workflows/lint.yml:
         dependencies:
             - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
