@@ -9,10 +9,10 @@ actions:
         commit: sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
         owner_id: 6558852
         repo_id: 537491527
-    actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17:
+    actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:
         tag: v4.3.1
         branch: releases/v4
-        commit: sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+        commit: sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         owner_id: 6558852
         repo_id: 610457791
     actions/download-artifact@v4.1.8:sha1-f90e50f09b67f6f3165a09937dd24035c12ac61d:
@@ -79,39 +79,39 @@ workflows:
     .github/workflows/ci.yml:
         dependencies:
             - actions/cache@v4.1.2:sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
-            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
             - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
     .github/workflows/deploy.yml:
         dependencies:
-            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
             - docker/build-push-action@v6.9.0:sha1-9586437f25ae0dacbd3ae602b4a2a388d0d00866
             - docker/login-action@v3.3.0:sha1-330c78c7a8c914323948dd43a70d9987a5384f10
     .github/workflows/lint.yml:
         dependencies:
-            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
             - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
     .github/workflows/nightly.yml:
         dependencies:
-            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
             - actions/download-artifact@v4.1.8:sha1-f90e50f09b67f6f3165a09937dd24035c12ac61d
             - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
     .github/workflows/release.yml:
         dependencies:
-            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
             - actions/github-script@v7.0.1:sha1-e04c949ade65762f5f12861c8b8a12121a5b74e7
             - actions/upload-artifact@v4.4.3:sha1-98f2c330eb306be659f61472ad3a677341f0718e
     .github/workflows/security.yml:
         dependencies:
-            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
             - ossf/scorecard-action@v2.4.0:sha1-2f0662f4b473e6b83e5a280005837e0709f7f84c
     .github/workflows/test-go.yml:
         dependencies:
             - actions/cache@v4.1.2:sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
-            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
             - actions/setup-go@v5.1.0:sha1-76821fdd41f9cc0750ac97b0c21ef391732bfe45
     .github/workflows/test-python.yml:
         dependencies:
             - actions/cache@v4.1.2:sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
-            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/checkout@v4.3.1:sha1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
             - actions/setup-python@v5.2.0:sha1-93c219f026825c2ddcdb9d3165584145f7b4b2c3
             - codecov/codecov-action@v5.0.7:sha1-79f7f6c9bbf2d6f13813746cba2f9ba9cb51d03d
