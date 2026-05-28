@@ -1,0 +1,15 @@
+name: test-python
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.3.1
+      - name: setup-python
+        uses: actions/setup-python@v5.2.0
+      - name: cache
+        uses: actions/cache@v4.1.2
+      - name: codecov-action
+        uses: codecov/codecov-action@v5.0.7
