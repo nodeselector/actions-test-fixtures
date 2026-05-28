@@ -3,42 +3,115 @@
 # Docs: https://gh.io/actions-lockfile
 version: v0.0.1
 actions:
-    actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5:
+    actions/cache@v4.1.2:sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7:
+        tag: v4.1.2
+        branch: releases/v4
+        commit: sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
+        owner_id: 6558852
+        repo_id: 537491527
+    actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17:
         tag: v4.3.1
         branch: releases/v4
-        commit: sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
-        owner_id: 44036562
-        repo_id: 197814629
-    nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637:
-        branch: main
-        commit: sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637
-        owner_id: 29457092
-        repo_id: 1205442499
-    nodeselector/actions-test-fixtures/nested-composite@updated:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d:
-        tag: updated
-        branch: main
-        commit: sha1-ea53476fdc172d8552df5af9658a45a367e4f41d
-        owner_id: 29457092
-        repo_id: 1203329948
-    nodeselector/actions-test-fixtures/simple-composite@main:sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8:
-        branch: main
-        commit: sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8
-        owner_id: 29457092
-        repo_id: 1203329948
-    nodeselector/actions-test-fixtures/simple-node@main:sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8:
-        branch: main
-        commit: sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8
-        owner_id: 29457092
-        repo_id: 1203329948
+        commit: sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+        owner_id: 6558852
+        repo_id: 610457791
+    actions/download-artifact@v4.1.8:sha1-f90e50f09b67f6f3165a09937dd24035c12ac61d:
+        tag: v4.1.8
+        branch: releases/v4
+        commit: sha1-f90e50f09b67f6f3165a09937dd24035c12ac61d
+        owner_id: 6558852
+        repo_id: 739481388
+    actions/github-script@v7.0.1:sha1-e04c949ade65762f5f12861c8b8a12121a5b74e7:
+        tag: v7.0.1
+        branch: releases/v7
+        commit: sha1-e04c949ade65762f5f12861c8b8a12121a5b74e7
+        owner_id: 6558852
+        repo_id: 558604976
+    actions/setup-go@v5.1.0:sha1-76821fdd41f9cc0750ac97b0c21ef391732bfe45:
+        tag: v5.1.0
+        branch: releases/v5
+        commit: sha1-76821fdd41f9cc0750ac97b0c21ef391732bfe45
+        owner_id: 6558852
+        repo_id: 768652613
+    actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52:
+        tag: v4.1.0
+        branch: releases/v4
+        commit: sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
+        owner_id: 6558852
+        repo_id: 371874654
+    actions/setup-python@v5.2.0:sha1-93c219f026825c2ddcdb9d3165584145f7b4b2c3:
+        tag: v5.2.0
+        branch: releases/v5
+        commit: sha1-93c219f026825c2ddcdb9d3165584145f7b4b2c3
+        owner_id: 6558852
+        repo_id: 783602487
+    actions/upload-artifact@v4.4.3:sha1-98f2c330eb306be659f61472ad3a677341f0718e:
+        tag: v4.4.3
+        branch: releases/v4
+        commit: sha1-98f2c330eb306be659f61472ad3a677341f0718e
+        owner_id: 6558852
+        repo_id: 660833323
+    codecov/codecov-action@v5.0.7:sha1-79f7f6c9bbf2d6f13813746cba2f9ba9cb51d03d:
+        tag: v5.0.7
+        branch: releases/v5
+        commit: sha1-79f7f6c9bbf2d6f13813746cba2f9ba9cb51d03d
+        owner_id: 96149781
+        repo_id: 522582515
+    docker/build-push-action@v6.9.0:sha1-9586437f25ae0dacbd3ae602b4a2a388d0d00866:
+        tag: v6.9.0
+        branch: releases/v6
+        commit: sha1-9586437f25ae0dacbd3ae602b4a2a388d0d00866
+        owner_id: 34787798
+        repo_id: 892428406
+    docker/login-action@v3.3.0:sha1-330c78c7a8c914323948dd43a70d9987a5384f10:
+        tag: v3.3.0
+        branch: releases/v3
+        commit: sha1-330c78c7a8c914323948dd43a70d9987a5384f10
+        owner_id: 34787798
+        repo_id: 260536125
+    ossf/scorecard-action@v2.4.0:sha1-2f0662f4b473e6b83e5a280005837e0709f7f84c:
+        tag: v2.4.0
+        branch: releases/v2
+        commit: sha1-2f0662f4b473e6b83e5a280005837e0709f7f84c
+        owner_id: 27406824
+        repo_id: 61831470
 workflows:
-    .github/workflows/happy-path.yml:
+    .github/workflows/ci.yml:
         dependencies:
-            - actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
-            - nodeselector/actions-test-fixtures-b/simple-echo@main:sha1-92b7b0058bc223c6e9dd4e19ef9247c934ba7637
-            - nodeselector/actions-test-fixtures/nested-composite@updated:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d
-            - nodeselector/actions-test-fixtures/simple-composite@main:sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8
-            - nodeselector/actions-test-fixtures/simple-node@main:sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8
-    .github/workflows/reusable-build.yml:
+            - actions/cache@v4.1.2:sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
+            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
+    .github/workflows/deploy.yml:
         dependencies:
-            - actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5
-            - nodeselector/actions-test-fixtures/simple-node@main:sha1-75d177e8b0bc58a39f4565a0bc4b34b2d55b8bb8
+            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - docker/build-push-action@v6.9.0:sha1-9586437f25ae0dacbd3ae602b4a2a388d0d00866
+            - docker/login-action@v3.3.0:sha1-330c78c7a8c914323948dd43a70d9987a5384f10
+    .github/workflows/lint.yml:
+        dependencies:
+            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
+    .github/workflows/nightly.yml:
+        dependencies:
+            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/download-artifact@v4.1.8:sha1-f90e50f09b67f6f3165a09937dd24035c12ac61d
+            - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
+    .github/workflows/release.yml:
+        dependencies:
+            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/github-script@v7.0.1:sha1-e04c949ade65762f5f12861c8b8a12121a5b74e7
+            - actions/upload-artifact@v4.4.3:sha1-98f2c330eb306be659f61472ad3a677341f0718e
+    .github/workflows/security.yml:
+        dependencies:
+            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - ossf/scorecard-action@v2.4.0:sha1-2f0662f4b473e6b83e5a280005837e0709f7f84c
+    .github/workflows/test-go.yml:
+        dependencies:
+            - actions/cache@v4.1.2:sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
+            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/setup-go@v5.1.0:sha1-76821fdd41f9cc0750ac97b0c21ef391732bfe45
+    .github/workflows/test-python.yml:
+        dependencies:
+            - actions/cache@v4.1.2:sha1-3b04ffc35ddc4560076018d04512c97ce4f08ee7
+            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/setup-python@v5.2.0:sha1-93c219f026825c2ddcdb9d3165584145f7b4b2c3
+            - codecov/codecov-action@v5.0.7:sha1-79f7f6c9bbf2d6f13813746cba2f9ba9cb51d03d
