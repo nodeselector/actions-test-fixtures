@@ -120,3 +120,7 @@ workflows:
             - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
             - actions/setup-python@v5.2.0:sha1-93c219f026825c2ddcdb9d3165584145f7b4b2c3
             - codecov/codecov-action@v5.0.7:sha1-79f7f6c9bbf2d6f13813746cba2f9ba9cb51d03d
+    .github/workflows/type-check.yml:
+        dependencies:
+            - actions/checkout@v4.3.1:sha1-29b2faa0e2191123819ba12727e0ff9852c1ae17
+            - actions/setup-node@v4.1.0:sha1-d0203bc0ca29d54b8d6c552dcd762e614f2c7e52
