@@ -8,7 +8,7 @@ workflows:
         - 'nodeselector/actions-test-fixtures@updated:sha1-ea53476fdc172d8552df5af9658a45a367e4f41d'
     '.github/workflows/imposter-commit.yml':
         - 'actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5'
-        - 'nodeselector/actions-test-fixtures/nested-composite@tampered:sha1-7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a'
+        - 'nodeselector/actions-test-fixtures@tampered:sha1-7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a'
     '.github/workflows/reusable-build.yml':
         - 'actions/checkout@v4.3.1:sha1-34e114876b0b11c390a56381ad16ebd13914f8d5'
         - 'nodeselector/actions-test-fixtures@main:sha1-0c83cb3637f3a0792146d4e3aa568c238a59b61d'
@@ -24,7 +24,7 @@ dependencies:
         commit: 'sha1-0c83cb3637f3a0792146d4e3aa568c238a59b61d'
         owner_id: 29457092
         repo_id: 1203329948
-    'nodeselector/actions-test-fixtures/nested-composite@tampered:sha1-7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a':
+    'nodeselector/actions-test-fixtures@tampered:sha1-7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a':
         branch: 'main'
         commit: 'sha1-7b403c9ec14bd3ae0bbf793c2bee8815a7ac920a'
         owner_id: 29457092
