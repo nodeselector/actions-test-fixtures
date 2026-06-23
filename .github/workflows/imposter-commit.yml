@@ -8,5 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.3.1
-      # resolves to  https://gist.github.com/nodeselector/6c258af120b14da9a068e43f492922a4
-      - uses: nodeselector/actions-test-fixtures/nested-composite@tampered
+      - uses: nodeselector/actions-test-fixtures/nested-composite@7b403c9ec14bd3ae0bbf793c2bee8815a7ac920b
