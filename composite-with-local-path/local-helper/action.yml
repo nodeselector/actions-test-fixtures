@@ -1,0 +1,12 @@
+name: 'Local Helper'
+description: 'A helper action referenced via local path from the parent composite'
+inputs:
+  message:
+    description: 'Message to echo'
+    default: 'hello from local helper'
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v4
+    - run: echo "${{ inputs.message }}"
+      shell: bash

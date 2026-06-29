@@ -1,0 +1,9 @@
+name: 'Composite With Local Path'
+description: 'A composite action that uses a local path reference (./local-helper) — tests that the lockfile tool blocks this pattern'
+runs:
+  using: 'composite'
+  steps:
+    - uses: ./local-helper
+    - uses: actions/checkout@v4
+    - run: echo "composite with local path done"
+      shell: bash
