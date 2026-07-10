@@ -1,0 +1,9 @@
+name: 'Deep Self-Ref L2'
+description: 'Third level of the $/ chain: fans out to two existing sibling composites via $/, whose own transitive deps must also be collected.'
+runs:
+  using: 'composite'
+  steps:
+    - uses: $/simple-composite
+    - uses: $/self-ref-composite
+    - run: echo "deep self-ref L2 done"
+      shell: bash

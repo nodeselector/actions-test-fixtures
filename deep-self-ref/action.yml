@@ -1,0 +1,8 @@
+name: 'Deep Self-Ref L0'
+description: 'Entry composite for a $/ self-reference chain three levels deep, ending in cross-repo transitive deps. Fetched remotely so the lockfile tool walks the $/ chain inside the tarball.'
+runs:
+  using: 'composite'
+  steps:
+    - uses: $/deep-self-ref-b
+    - run: echo "deep self-ref L0 done"
+      shell: bash

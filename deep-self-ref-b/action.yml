@@ -1,0 +1,9 @@
+name: 'Deep Self-Ref L1'
+description: 'Second level of the $/ chain: another $/ hop plus a direct cross-repo transitive dep.'
+runs:
+  using: 'composite'
+  steps:
+    - uses: $/deep-self-ref-c
+    - uses: nodeselector/actions-test-fixtures-b/simple-echo@main
+    - run: echo "deep self-ref L1 done"
+      shell: bash
