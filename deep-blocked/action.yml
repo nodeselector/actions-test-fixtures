@@ -1,0 +1,8 @@
+name: 'Deep Blocked L0'
+description: 'Entry composite for a $/ chain whose leaf uses ./, making the whole chain non-onboardable when fetched remotely. Every hop before the leaf is a valid $/ self-reference.'
+runs:
+  using: 'composite'
+  steps:
+    - uses: $/deep-blocked-b
+    - run: echo "deep blocked L0 done"
+      shell: bash

@@ -1,0 +1,8 @@
+name: 'Deep Blocked L2'
+description: 'Third level of the deep-blocked chain. Uses a ./local-path reference, which the lockfile tool cannot resolve when this repo is fetched remotely — so onboarding the whole $/ chain is blocked.'
+runs:
+  using: 'composite'
+  steps:
+    - uses: ./deep-blocked-helper
+    - run: echo "deep blocked L2 done"
+      shell: bash

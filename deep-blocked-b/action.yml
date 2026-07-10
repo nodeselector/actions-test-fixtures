@@ -1,0 +1,8 @@
+name: 'Deep Blocked L1'
+description: 'Second level of the deep-blocked chain. Self-references the next level via $/.'
+runs:
+  using: 'composite'
+  steps:
+    - uses: $/deep-blocked-c
+    - run: echo "deep blocked L1 done"
+      shell: bash

@@ -1,0 +1,7 @@
+name: 'Deep Blocked Helper'
+description: 'Well-formed local helper referenced via ./ from deep-blocked-c. The tool never resolves it: a ./ inside a remotely fetched composite is unresolvable by design.'
+runs:
+  using: 'composite'
+  steps:
+    - run: echo "deep blocked helper done"
+      shell: bash
