@@ -1,6 +1,0 @@
-on:
-  workflow_dispatch:
-
-jobs:
-  call:
-    uses: nodeselector/actions-test-fixtures/.github/workflows/reusable-build.yml@${{ github.ref_name }}
