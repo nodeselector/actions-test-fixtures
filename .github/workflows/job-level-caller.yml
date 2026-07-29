@@ -1,8 +1,0 @@
-on:
-  workflow_dispatch:
-
-jobs:
-  call:
-    uses: ./.github/workflows/job-level-uses-expression.yml
-    with:
-      ref: main

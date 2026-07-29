@@ -1,10 +1,6 @@
 on:
-  workflow_call:
-    inputs:
-      ref:
-        type: string
-        required: true
+  workflow_dispatch:
 
 jobs:
   call:
-    uses: nodeselector/actions-test-fixtures/.github/workflows/reusable-build.yml@${{ inputs.ref }}
+    uses: nodeselector/actions-test-fixtures/.github/workflows/reusable-build.yml@${{ github.ref_name }}
