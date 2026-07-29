@@ -3,4 +3,4 @@ on:
 
 jobs:
   call:
-    uses: nodeselector/actions-test-fixtures/.github/workflows/reusable-build.yml@${{ github.sha }}
+    uses: nodeselector/actions-test-fixtures/.github/workflows/reusable-build.yml@${{ vars.REF }}
