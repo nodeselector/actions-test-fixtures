@@ -3,4 +3,4 @@ on:
 
 jobs:
   call:
-    uses: ${{ format('./.github/workflows/reusable-build.yml') }}
+    uses: nodeselector/actions-test-fixtures/.github/workflows/reusable-build.yml@${{ github.sha }}
