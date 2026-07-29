@@ -1,0 +1,6 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  call:
+    uses: ${{ format('./.github/workflows/reusable-build.yml') }}
