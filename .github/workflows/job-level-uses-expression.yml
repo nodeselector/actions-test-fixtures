@@ -1,6 +1,10 @@
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        required: true
 
 jobs:
   call:
-    uses: nodeselector/actions-test-fixtures/.github/workflows/reusable-build.yml@${{ vars.REF }}
+    uses: nodeselector/actions-test-fixtures/.github/workflows/reusable-build.yml@${{ inputs.ref }}
